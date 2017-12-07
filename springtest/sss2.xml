@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    <!--
+            (只有下面的是需要自己添加的，其他的都是在新建spring配置xml文件的时候，就自带的啦)
+            1、导入基于注解的xsd
+                 xmlns:context="http://www.springframework.org/schema/context"
+                    http://www.springframework.org/schema/context
+                    http://www.springframework.org/schema/context/spring-context-2.5.xsd
+          2、导入注解解析器
+              <context:annotation-config></context:annotation-config>
+             3、导入person和student
+     -->
+
+    <!-- 打开Spring的Annotation支持 -->
+	<context:annotation-config/>
+	<!-- 设定Spring 去哪些包中找Annotation -->
+	<context:component-scan base-package="com.myfirst.spring2" />
+	
+    <bean id="person" class="com.myfirst.spring2.Person">
+       <constructor-arg value="1" index="0">  
+   	   </constructor-arg>  
+    </bean>
+    
+    <bean id="student" class="com.myfirst.spring2.Student"/>
+    <bean id="ss" class="com.myfirst.spring2.Student">
+    	<property name="name2" value="Tom"/>                
+    </bean>
+
+	<bean id="logTestBean" class="com.myfirst.spring2.LogTestBean" init-method="initMethod" destroy-method="destroyMethod"/>  
+</beans>

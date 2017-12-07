@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person>
+  <name>admin管理员</name>
+  <sex>男</sex>
+  <age>25</age>
+  <Address>
+    <address>
+      <country>中国</country>
+      <province>安徽</province>
+      <city>宿州</city>
+      <county>萧县</county>
+    </address>
+    <address>
+      <country>中国</country>
+      <province>上海</province>
+      <county></county>
+    </address>
+  </Address>
+</person>
