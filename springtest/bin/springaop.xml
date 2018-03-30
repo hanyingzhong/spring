@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	<!-- (只有下面的是需要自己添加的，其他的都是在新建spring配置xml文件的时候，就自带的啦) 1、导入基于注解的xsd xmlns:context="http://www.springframework.org/schema/context" 
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd 
+		2、导入注解解析器 <context:annotation-config></context:annotation-config> 3、导入person和student -->
+
+	<!-- 打开Spring的Annotation支持 -->
+	<context:annotation-config />
+	<!-- 设定Spring 去哪些包中找Annotation -->
+	<!-- in the project, all the classes use  annotation will be included.-->
+	<context:component-scan base-package="com.myfirst.spring2" />
+	<context:component-scan base-package="com.springaop.test" />
+	<aop:aspectj-autoproxy />
+
+	<!-- spring2.x后 -->
+	<!-- 目标对象 -->
+	<bean id="userServImpl" class="com.aspecttest.UserServImpl" />
+	<!-- 通知 -->
+	<bean id="logAdvice" class="com.springaop.test.LogAdvice" />
+
+	<aop:config>
+		<aop:aspect id="logAspect" ref="logAdvice">
+			<!-- 切入点 -->
+			<aop:pointcut id="beforePointCut" expression="execution(* saveUser*(..))" />
+			<aop:pointcut id="afterPointCut" expression="execution(* saveUser*(..))" />
+
+			<!-- 织入(通知作用于切入点) -->
+			<aop:before method="beforeLog" pointcut-ref="beforePointCut" />
+			<aop:after  method="afterLog" pointcut-ref="afterPointCut" />
+			</aop:aspect>
+	</aop:config>
+
+</beans>

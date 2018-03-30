@@ -15,7 +15,7 @@ public class MyDbTest {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		String sql = "select * from ap";
+		String sql = "select * from cabinet";
 
 		try {
 			
@@ -23,7 +23,7 @@ public class MyDbTest {
 			Class.forName("com.mysql.jdbc.Driver");
 			
 			//通过驱动管理器获取连接
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cloud_platform", "root", "feixun*123");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/exchange", "root", "admin");
 
 			//创建 statement
 			st = conn.createStatement();
@@ -33,7 +33,7 @@ public class MyDbTest {
 
 			//处理返回的结果
 			while(rs.next()){
-				System.out.println(rs.getString("sn"));
+				System.out.println(rs.getString("cabinetID"));
 			}
 			
 		} catch (SQLException | ClassNotFoundException e) {
