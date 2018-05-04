@@ -2,7 +2,6 @@ package com.soecode.lyf.web;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.soecode.lyf.dto.AppointExecution;
 import com.soecode.lyf.dto.Result;
@@ -36,6 +35,7 @@ public class BookController {
 		List<Book> list = bookService.getList();
 		model.addAttribute("list", list);
 		// list.jsp + model = ModelAndView
+		System.out.println(list);
 		return "list";// WEB-INF/jsp/"list".jsp
 	}
 
@@ -48,6 +48,7 @@ public class BookController {
 		if (book == null) {
 			return "forward:/book/list";
 		}
+		
 		model.addAttribute("book", book);
 		return "detail";
 	}
