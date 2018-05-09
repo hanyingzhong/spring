@@ -12,6 +12,7 @@
 		<!-- 使用shiro标签 -->
 		<shiro:hasPermission name="admin:*">
 			<a href="<%=request.getContextPath()%>/user/home">用户管理</a><br/>
+			<a href="<%=request.getContextPath()%>/reload">加载权限</a><br/>
 		</shiro:hasPermission>
 		<a href="#" onclick="updateRole('<%=request.getContextPath()%>/perm/delRole')">删除用户管理角色</a><br/>
 		<a href="#" onclick="updateRole('<%=request.getContextPath()%>/perm/addRole')">添加用户管理角色</a><br/>

@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 在应用上下文监听器中监听zk事件,从而实现shiro缓存更新通知.
+ * the beam defined in web.xml
  * @desc org.chench.test.shiro.spring.listener.ShiroCacheListener
  * @author chench9@lenovo.com
  * @date 2017年12月13日
@@ -34,7 +35,7 @@ public class ShiroCacheListener implements ServletContextListener, Watcher, Stat
 	private ZooKeeper zk = null;
 	
 	public void contextInitialized(ServletContextEvent sce) {
-		logger.info("shiro cache listener context initialized");
+		logger.error("shiro cache listener context initialized");
 		init();
 	}
 

@@ -22,6 +22,13 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("home");
 		return mv;
 	}
+	
+	@RequestMapping("/")
+	//@RequiresPermissions(value={"log:manage:*"})
+	public ModelAndView defaultHome(HttpServletRequest req) {
+		ModelAndView mv = new ModelAndView("home");
+		return mv;
+	}
 }
 
 

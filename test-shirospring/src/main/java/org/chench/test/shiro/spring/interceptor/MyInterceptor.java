@@ -6,6 +6,7 @@ package org.chench.test.shiro.spring.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,7 +20,7 @@ public class MyInterceptor implements HandlerInterceptor {
 			throws Exception {
 		// TODO Auto-generated method stub
 		// 在filter中获取shiro认证用户信息
-		//System.out.println(String.format("在过滤器中获取shiro认证用户信息：%s", SecurityUtils.getSubject().getPrincipal()));
+		System.out.println(String.format("在过滤器中获取shiro认证用户信息：%s", SecurityUtils.getSubject().getPrincipal()));
 		
 		return true;
 	}

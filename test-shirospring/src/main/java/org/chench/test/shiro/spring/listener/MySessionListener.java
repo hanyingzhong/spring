@@ -20,8 +20,8 @@ public class MySessionListener implements HttpSessionBindingListener {
 	public void valueUnbound(HttpSessionBindingEvent event) {
 		System.out.println("valueUnbound");
 		System.out.println(event.getName() + " = " + event.getValue());
-		System.out.println("event source: " + event.getSource());
-		System.out.println("session: " + event.getSession());
+		System.out.println("event source: " + event.getSource().toString());
+		System.out.println("session: " + event.getSession().getId());
 		System.out.println(event.getSession().getAttribute("test"));
 	}
 
