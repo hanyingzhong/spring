@@ -55,6 +55,7 @@ public class GponMgr {
 
 					ZMsg msg = new ZMsg();
 					msg.add(now.getBytes());
+					msg.addFirst(id.getBytes()); // source：client1
 					msg.addFirst("client1".getBytes()); // 目的2：client1
 					msg.addFirst("master".getBytes());  // 目的1：router-slot-2
 					msg.send(socket);
