@@ -3,22 +3,22 @@ package com.jeromq.router2;
 import org.zeromq.ZMQ;
 import org.zeromq.ZMsg;
 
-public class Client {
+public class GponMgr {
 	private ZMQ.Context context;
 	private ZMQ.Socket socket;
 	private String id;
 
-	public Client(String id) {
+	public GponMgr(String id) {
 		this.context = ZMQ.context(1);
 		this.socket = context.socket(ZMQ.DEALER);
 		this.id = id;
 	}
 
 	public static void main(String[] args) {
-		Client client = new Client("client2");
+		GponMgr client = new GponMgr("client2");
 		//client.start();
 
-		Client client1 = new Client("client1");
+		GponMgr client1 = new GponMgr("gponmgr");
 		client1.start();
 	}
 
@@ -32,7 +32,7 @@ public class Client {
 		ZMsg msg = new ZMsg();
 		msg.add(now.getBytes());
 		msg.addFirst("client1".getBytes()); // 目的2：client1
-		msg.addFirst("slot-2".getBytes());  // 目的1：router-slot-2
+		msg.addFirst("master".getBytes());  // 目的1：router-slot-2
 		msg.send(socket);	
 		try {
 			Thread.currentThread().sleep(100);
@@ -47,7 +47,7 @@ public class Client {
 
 			public void run() {
 				// TODO Auto-generated method stub
-				socket.connect("ipc://front");
+				socket.connect("ipc://slot2");
 				socket.setIdentity(id.getBytes());
 				for (int i = 0; i < 1; i++) {
 					String now = "hello" + i;
@@ -56,8 +56,8 @@ public class Client {
 					ZMsg msg = new ZMsg();
 					msg.add(now.getBytes());
 					msg.addFirst("client1".getBytes()); // 目的2：client1
-					msg.addFirst("slot-2".getBytes());  // 目的1：router-slot-2
-					//msg.send(socket);
+					msg.addFirst("master".getBytes());  // 目的1：router-slot-2
+					msg.send(socket);
 				}
 				/*
 				 * for (int i = 0; i < 5; i++) { String back = new String(socket.recv(0));

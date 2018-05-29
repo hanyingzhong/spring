@@ -1,5 +1,7 @@
 package com.jeromq.router2;
 
+import java.awt.Font;
+
 import org.zeromq.ZMQ;
 import org.zeromq.ZMsg;
 
@@ -23,6 +25,7 @@ public class PureRouter2 {
 					// TODO Auto-generated method stub
 					front.setIdentity(id.getBytes());
 					front.connect("ipc://front");
+					front.bind("ipc://slot2");
 					ZMQ.Poller poller = context.poller();
 					ZMQ.PollItem fItem = new ZMQ.PollItem(front, ZMQ.Poller.POLLIN);
 					poller.register(fItem);
@@ -36,6 +39,9 @@ public class PureRouter2 {
 							//must not remove the first FRAME.
 							//msg.removeFirst(); 
 							//msg.addFirst("client1".getBytes());
+							if(false == msg.getFirst().toString().equals("master")) {
+								msg.removeFirst();
+							}
 							msg.send(front);
 						}
 					}
