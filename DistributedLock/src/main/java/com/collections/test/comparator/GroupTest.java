@@ -63,7 +63,6 @@ public class GroupTest {
 		list.add(new GroupTest().new Apple("黄", 119));
 		list.add(new GroupTest().new Apple("黄", 224));
 		List<List<Apple>> byColors = divider(list, new Comparator<Apple>() {
-
 			@Override
 			public int compare(Apple o1, Apple o2) {
 				// 按颜色分组

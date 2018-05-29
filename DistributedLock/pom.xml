@@ -15,6 +15,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.zeromq</groupId>
+			<artifactId>jeromq</artifactId>
+			<version>0.4.3</version>
+		</dependency>
+
 		<!-- jedis包 -->
 		<dependency>
 			<groupId>redis.clients</groupId>
